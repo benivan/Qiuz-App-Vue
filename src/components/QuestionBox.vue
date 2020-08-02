@@ -80,7 +80,7 @@ export default {
   methods:{
     selectAnswer(index){
       this.selectedindex = index
-      // console.log(index)
+      
     },
     submitAnswer(){
       let isCorrect =false
@@ -103,7 +103,10 @@ export default {
       else if (this.answered && this.correctindex === index) {
         return 'correct'
         
-      } else if (this.answered && this.selectedindex ===index  && this.correctindex !== index){
+      } else if (this.answered && 
+        this.selectedindex ===index && 
+        this.correctindex !== index
+        ){
         return 'incorrect'
         
       }
