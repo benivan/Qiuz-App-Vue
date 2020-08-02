@@ -15,10 +15,7 @@
              v-for="(answer,index) in answers" 
              :key="index"
              @click="selectAnswer(index)"
-             :class="[
-            !answered && selectedindex === index ? 'selected' : 
-            answered && correctindex === index ? 'correct':''
-             ]"
+             :class="answerClass(index)"
             >
                 {{answer}}
               
@@ -97,6 +94,20 @@ export default {
       let answers = [...this.currentQuestion.incorrect_answers,this.currentQuestion.correct_answer]
       this.shuffledAnswers = _.shuffle(answers)
       this.correctindex = this.shuffledAnswers.indexOf(this.currentQuestion.correct_answer)
+    },
+    answerClass(index){
+
+      if( !this.answered && this.selectedindex === index){
+        return 'selected'
+      }
+      else if (this.answered && this.correctindex === index) {
+        return 'correct'
+        
+      } else if (this.answered && this.selectedindex ===index  && this.correctindex !== index){
+        return 'incorrect'
+        
+      }
+    
     }
   }
   
